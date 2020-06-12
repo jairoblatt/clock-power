@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Relógio Power</title>
+    <meta charset="utf-8">
+</head>
+<style>
+    @import url(https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap);
+
+    body {
+        display: block;
+        min-height: 100vh;
+        
+        background: #11998e;
+        background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+        background: linear-gradient(to right, #38ef7d, #11998e);
+
+    }
+
+    #clock {
+        padding-top: 40vh;
+        font-family: 'Orbitron', sans-serif;
+        color: #1C2833;
+        font-size: 50px;
+        justify-content: center;
+        align-items: center;
+         display: flex; 
+    }
+    #current_date{
+        justify-content: center;
+        align-items: center;
+         display: flex; 
+        font-family: 'Orbitron', sans-serif;
+        color: #1C2833;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div id="clock">
+        <div id="minutes">
+        </div>
+    </div>
+    <div id="current_date"></div>
+    <script>
+        function showTime() {
+            let date = new Date()
+            let hours = date.getHours();
+            let minutes = date.getMinutes()
+            let seconds = date.getSeconds()
+            let formatHours = convertFormat(hours)
+            hours = checkTime(hours)
+            hours = addZero(hours)
+            minutes = addZero(minutes)
+            seconds = addZero(seconds)
+            document.getElementById('clock').innerHTML = `${hours} : ${minutes} : ${seconds} :  ${formatHours}`
+        }
+
+        function convertFormat(time) {
+            let format = 'AM '
+            if (time >= 12) {
+                format = 'PM'
+            }
+            return format
+        }
+        function checkTime(time) {
+            if (time > 12) {
+                time = time - 12;
+
+            }
+            if (time === 0) {
+                time = 12;
+
+
+            }
+            return time
+        }
+
+        function addZero(time) {
+            if (time < 10) {
+                time = "0" + time
+            }
+            return time
+        }
+        showTime()
+        setInterval(showTime, 1000)
+        let date = new Date()
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (day < 10) {
+            day = '0' + day
+        }
+        if (month < 10) {
+            month = '0' + month
+        }
+        var out = document.getElementById("current_date");
+        out.innerHTML = day + "/" + month + "/" + year;
+    </script>
+</body>
+</html>
