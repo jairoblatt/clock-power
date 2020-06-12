@@ -12,9 +12,9 @@
         display: block;
         min-height: 100vh;
         
-        background: #11998e;
-        background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
-        background: linear-gradient(to right, #38ef7d, #11998e);
+        background: #f8f8f8;
+        /* background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+        background: linear-gradient(to right, #38ef7d, #11998e); */
 
     }
 
@@ -22,7 +22,7 @@
         padding-top: 40vh;
         font-family: 'Orbitron', sans-serif;
         color: #1C2833;
-        font-size: 50px;
+        font-size: 80px;
         justify-content: center;
         align-items: center;
          display: flex; 
@@ -33,7 +33,7 @@
          display: flex; 
         font-family: 'Orbitron', sans-serif;
         color: #1C2833;
-        font-size: 20px;
+        font-size: 35px;
     }
 </style>
 
@@ -85,19 +85,26 @@
         }
         showTime()
         setInterval(showTime, 1000)
-        let date = new Date()
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
 
-        if (day < 10) {
+        function showDate(){
+            let date = new Date()
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (day < 10) {
             day = '0' + day
+            }
+            if (month < 10) {
+                month = '0' + month
+            }
+            
+            var out = document.getElementById("current_date");
+            out.innerHTML = day + "/" + month + "/" + year;
         }
-        if (month < 10) {
-            month = '0' + month
-        }
-        var out = document.getElementById("current_date");
-        out.innerHTML = day + "/" + month + "/" + year;
-    </script>
+        showDate()
+        setInterval(showDate, 1000)
+
+        </script>
 </body>
 </html>
